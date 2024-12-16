@@ -1,4 +1,4 @@
-<h1><u>Maze Generator and Solver/u></h1>
+<h1><u>Maze Generator and Solver</u></h1>
 
 <h2>About:</h2>
 
