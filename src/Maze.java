@@ -34,16 +34,79 @@ class Maze {
 
     public void printMaze() {
 
+        for (int i=0; i<rows; ++i) {
+
+            
+
+
+
+
+
+        }
+
     }
 
-    class Cell {
+
+} // end maze
+
+  class Cell {
+
+        int row;
+        int col;
+        boolean visited;
+        boolean topWall;
+        boolean bottomWall;
+        boolean leftWall;
+        boolean rightWall;
+
+
+        public Cell(int row, int col) {
+            this.row = row;
+            this.col = col;
+
+            this.topWall = true;
+            this.bottomWall = true;
+            this.leftWall = true;
+            this.rightWall = true;
+        }
+
+        public boolean hasTopWall() {
+            return this.topWall;
+        }
+
+        public boolean hasBottomWall() {
+            return this.bottomWall;
+        }
+
+        public boolean hasLeftWall() {
+            return this.leftWall;
+        }
+
+        public boolean hasRightWall() {
+            return this.rightWall;
+        }
+
+        public void removeWall(String choice) {
+
+            if (choice.equals("top")) { topWall = false;}
+
+            if (choice.equals("bottom")) { bottomWall = false;}
+
+            if (choice.equals("left")) { leftWall = false;}
+
+            if (choice.equals("right")) { rightWall = false;}
+
+        }
+
+        public boolean isVisited() {
+            return this.visited;
+        }
+
+        public void setVisited(boolean visited) {
+            this.visited = visited;
+        }
+    } // end cell
 
 
 
 
-
-    }
-
-
-
-}
