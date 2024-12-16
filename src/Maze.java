@@ -35,13 +35,32 @@ class Maze {
     public void printMaze() {
 
         for (int i=0; i<rows; ++i) {
+    
+           for (int j=0; j<cols; ++j) { // top wall
+               if (grid[i][j].hasTopWall()) {
+                   System.out.print("+---");
+               } else {
+                   System.out.print("+   ");
+               }
+           }
+           
+          System.out.println("+");
 
-            
+          for (int j=0; j<cols; ++j) { // side walls
+            if (grid[i][j].hasLeftWall()) {
+                System.out.print("|   ");
+            } else {
+                System.out.print("    ");
+            }
+          }
 
+          System.out.print("|");
 
+         for (int j=0; j<cols; ++j) {
+            System.out.print("+---");
+         }
 
-
-
+        System.out.println("+");
         }
 
     }
