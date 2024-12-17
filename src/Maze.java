@@ -1,8 +1,8 @@
 class Maze {
 
-    int rows;
-    int cols;
-    Cell[][] grid;
+    int rows = 0;
+    int cols = 0;
+    Cell[][] grid = new Cell[rows][cols];
 
     public Maze(int rows, int cols) {
         this.rows = rows;
@@ -32,47 +32,40 @@ class Maze {
         return this.grid;
     }
 
-    public void printMaze() {
+   public void printMaze() {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (grid[i][j].hasTopWall()) {
+                System.out.print("+---");
+            } else {
+                System.out.print("+   ");
+            }
+        }
+        System.out.println("+");
 
-        for (int i=0; i<rows; ++i) {
-    
-           for (int j=0; j<cols; ++j) { // top wall
-               if (grid[i][j].hasTopWall()) {
-                   System.out.print("+---");
-               } else {
-                   System.out.print("+   ");
-               }
-           }
-           
-          System.out.println("+");
-
-          for (int j=0; j<cols; ++j) { // side walls
+        for (int j = 0; j < cols; j++) {
             if (grid[i][j].hasLeftWall()) {
                 System.out.print("|   ");
             } else {
                 System.out.print("    ");
             }
-          }
-
-          System.out.print("|");
-
-         for (int j=0; j<cols; ++j) {
-            System.out.print("+---");
-         }
-
-        System.out.println("+");
         }
-
+        System.out.println("|");
     }
 
+    for (int j = 0; j < cols; j++) {
+        System.out.print("+---");
+    }
+    System.out.println("+");
+}
+ 
 
-} // end maze
 
   class Cell {
 
         int row;
         int col;
-        boolean visited;
+        boolean visited = false;
         boolean topWall;
         boolean bottomWall;
         boolean leftWall;
@@ -126,6 +119,6 @@ class Maze {
         }
     } // end cell
 
-
+}
 
 

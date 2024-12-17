@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.*;
 import java.util.Stack;
 import java.util.Random;
 
@@ -22,7 +22,7 @@ class MazeGenerator {
 
         while (!stack.isEmpty()) {
             Maze.Cell current = stack.peek();
-            List<Maze.Cell> neighbors = current.getUnvisitedNeighbors(current);
+            List<Maze.Cell> neighbors = getUnvisitedNeighbors(current);
 
             if (neighbors.isEmpty() || neighbors == null) {
                 stack.pop();
@@ -35,10 +35,44 @@ class MazeGenerator {
         } // end while
     }
 
-    // add getUnivisted
-    //
-    // add addNeighbor if unvistied
-    //
-    // add removeWall
+    List<Maze.Cell> getUnvisitedNeighbors(Maze.Cell cell) {
+        int row = cell.row;
+        int col = cell.col;
+
+        List<Maze.Cell> neighbors = new ArrayList<>();
+
+        addNeighborIfUnvisited(neighbors, maze.getCell(row - 1, col)); // Top
+        addNeighborIfUnvisited(neighbors, maze.getCell(row + 1, col)); // Bottom
+        addNeighborIfUnvisited(neighbors, maze.getCell(row, col - 1)); // Left
+        addNeighborIfUnvisited(neighbors, maze.getCell(row, col + 1)); // Right
+
+        return neighbors;
+
+    }
+
+    void addNeighborIfUnvisited(List<Maze.Cell> neighbors, Maze.Cell neighbor) {
+         if (neighbor != null && !neighbor.isVisited()) {
+            neighbors.add(neighbor);
+        }
+    }
+
+     private void removeWall(Maze.Cell current, Maze.Cell next) {
+        int rowDiff = current.row - next.row;
+        int colDiff = current.col - next.col;
+
+        if (rowDiff == 1) { // Next is above
+            current.removeWall("top");
+            next.removeWall("bottom");
+        } else if (rowDiff == -1) { // Next is below
+            current.removeWall("bottom");
+            next.removeWall("top");
+        } else if (colDiff == 1) { // Next is left
+            current.removeWall("left");
+            next.removeWall("right");
+        } else if (colDiff == -1) { // Next is right
+            current.removeWall("right");
+            next.removeWall("left");
+        }
+    }
 
 }
