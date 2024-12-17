@@ -9,7 +9,7 @@ class Maze {
         this.cols = cols;
         this.grid = new Cell[rows][cols];
         initGrid();
-    }
+    } // construct
 
     void initGrid() {
         for (int i=0; i<rows; ++i) {
@@ -17,7 +17,7 @@ class Maze {
                 grid[i][j] = new Cell(i, j);
             }
         }
-    }
+    } // just set everybody to a cell
 
     
     public Cell getCell(int row, int col) {
@@ -26,17 +26,17 @@ class Maze {
             return null;
         }
         return grid[row][col];
-    }
+    } // check bounds and return it
 
     public Cell[][] getGrid() {
         return this.grid;
-    }
+    } // return the grid
 
    public void printMaze() {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             if (grid[i][j].hasTopWall()) {
-                System.out.print("+---");
+                System.out.print("+---"); // top walls for length
             } else {
                 System.out.print("+   ");
             }
@@ -45,28 +45,28 @@ class Maze {
 
         for (int j = 0; j < cols; j++) {
             if (grid[i][j].hasLeftWall()) {
-                System.out.print("|   ");
+                System.out.print("|   "); // left walls for length
             } else {
                 System.out.print("    ");
             }
         }
-        System.out.println("|");
+        System.out.println("|"); // right wals
     }
 
     for (int j = 0; j < cols; j++) {
-        System.out.print("+---");
+        System.out.print("+---"); // bottom walls
     }
-    System.out.println("+");
-}
+        System.out.println("+");
+    } // end of the printer   
  
 
 
-  class Cell {
+  class Cell { // class inside of cell as learned in 340
 
         int row;
         int col;
         boolean visited = false;
-        boolean topWall;
+        boolean topWall; // booleans
         boolean bottomWall;
         boolean leftWall;
         boolean rightWall;
@@ -80,8 +80,9 @@ class Maze {
             this.bottomWall = true;
             this.leftWall = true;
             this.rightWall = true;
-        }
+        } // basic construct
 
+        // basic getters here
         public boolean hasTopWall() {
             return this.topWall;
         }
@@ -108,13 +109,13 @@ class Maze {
 
             if (choice.equals("right")) { rightWall = false;}
 
-        }
+        } // for usage by other clases
 
-        public boolean isVisited() {
+        public boolean isVisited() { // just checking if visited
             return this.visited;
         }
 
-        public void setVisited(boolean visited) {
+        public void setVisited(boolean visited) { // just adding to visited
             this.visited = visited;
         }
     } // end cell

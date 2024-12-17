@@ -12,13 +12,18 @@ class Main {
         System.out.print("Cols: ");
         int cols = stdin.nextInt();
 
-        Maze maze = new Maze(rows, cols);
-        MazeGenerator generator = new MazeGenerator(maze);
-        generator.generate();
+        // add sorting selection here
 
-        maze.printMaze();
+        Maze maze = new Maze(rows, cols); // our maze with defined size
+        MazeGenerator generator = new MazeGenerator(maze); // the generated
+        generator.generate(); // here
+
+        maze.printMaze(); // print it to test
 
         // add solving next
+
+        MazeSolver solver = new MazeSolver(maze);
+        solver.solveDFS(); // solve using DFS
 
     }
 }

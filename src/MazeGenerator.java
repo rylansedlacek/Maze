@@ -11,23 +11,23 @@ class MazeGenerator {
     public MazeGenerator(Maze maze) {
         this.maze = maze;
         random = new Random();
-    }
+    } // end construct
 
     public void generate() {
-        Stack<Maze.Cell> stack = new Stack<>();
+        Stack<Maze.Cell> stack = new Stack<>(); // using a stack we generate
         
         Maze.Cell start = maze.getCell(0,0);
-        start.setVisited(true);
+        start.setVisited(true); // grab cell 0 0 
         stack.push(start);
 
         while (!stack.isEmpty()) {
             Maze.Cell current = stack.peek();
-            List<Maze.Cell> neighbors = getUnvisitedNeighbors(current);
+            List<Maze.Cell> neighbors = getUnvisitedNeighbors(current); // look at all neighbors
 
             if (neighbors.isEmpty() || neighbors == null) {
                 stack.pop();
             } else {
-                Maze.Cell next = neighbors.get(random.nextInt(neighbors.size()));
+                Maze.Cell next = neighbors.get(random.nextInt(neighbors.size())); // create path usign neighbors
                 removeWall(current, next);
                 next.setVisited(true);
                 stack.push(next);
@@ -39,7 +39,7 @@ class MazeGenerator {
         int row = cell.row;
         int col = cell.col;
 
-        List<Maze.Cell> neighbors = new ArrayList<>();
+        List<Maze.Cell> neighbors = new ArrayList<>(); // array to store and return
 
         addNeighborIfUnvisited(neighbors, maze.getCell(row - 1, col)); // Top
         addNeighborIfUnvisited(neighbors, maze.getCell(row + 1, col)); // Bottom
@@ -52,12 +52,12 @@ class MazeGenerator {
 
     void addNeighborIfUnvisited(List<Maze.Cell> neighbors, Maze.Cell neighbor) {
          if (neighbor != null && !neighbor.isVisited()) {
-            neighbors.add(neighbor);
+            neighbors.add(neighbor); // if its not visited we can add it to our list!
         }
     }
 
      private void removeWall(Maze.Cell current, Maze.Cell next) {
-        int rowDiff = current.row - next.row;
+        int rowDiff = current.row - next.row; // get the differences and determine where to remove
         int colDiff = current.col - next.col;
 
         if (rowDiff == 1) { // Next is above
@@ -75,4 +75,4 @@ class MazeGenerator {
         }
     }
 
-}
+} // end class
