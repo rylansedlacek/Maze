@@ -12,7 +12,7 @@ class Main {
         System.out.print("Cols: ");
         int cols = stdin.nextInt();
 
-        // add sorting selection here
+        //TODO add sorting selection here
 
         Maze maze = new Maze(rows, cols); // our maze with defined size
         MazeGenerator generator = new MazeGenerator(maze); // the generated
